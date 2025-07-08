@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loud and Cloud Pure Veg Restaurant - Authentic Vegetarian Cuisine | Gorakhpur</title>
+    <meta name="description"
+        content="Experience authentic pure vegetarian cuisine at Loud and Cloud Restaurant in Gorakhpur. Fresh ingredients, traditional recipes, and exceptional dining experience.">
+    <meta name="keywords"
+        content="vegetarian restaurant, pure veg, Gorakhpur, Indian cuisine, vegetarian food, restaurant">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(22, 163, 74, 0.6)),
+                url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') center/cover;
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2s infinite;
+        }
+
+        .menu-item,
+        .feature-card,
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover,
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #22C55E, #16A34A);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #22C55E, #16A34A);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #22C55E;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 1px solid #e2e8f0;
+        }
+
+        .star-rating {
+            color: #fbbf24;
+        }
+
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .floating-cart:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter scroll-smooth">
+    <!-- Header -->
+    <header class="bg-white shadow-xl sticky top-0 z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-xl font-playfair">F</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold text-green-800 font-playfair">Loud and Cloud</span>
+                        <p class="text-xs text-gray-600 font-medium">Pure Vegetarian Restaurant</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-green-600 font-medium">Home</a>
+                    <a href="#menu" class="nav-link text-gray-700 hover:text-green-600 font-medium">Menu</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-green-600 font-medium">About</a>
+                    <a href="#features" class="nav-link text-gray-700 hover:text-green-600 font-medium">Features</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-green-600 font-medium">Gallery</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-green-600 font-medium">Reviews</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-green-600 font-medium">Contact</a>
+                </nav>
+
+                <!-- Contact Info & Cart -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-gray-600">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-sm font-medium">+91 9839344008</span>
+                        </div>
+                    </div>
+
+                    <!-- Cart Button -->
+                    <button id="cart-btn" class="relative p-2 text-gray-600 hover:text-green-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+                        </svg>
+                        <span id="cart-count" class="cart-badge hidden">0</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-gray-200 mt-4">
+                <div class="flex flex-col space-y-3 pt-4">
+                    <a href="#home"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Home</a>
+                    <a href="#menu"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Menu</a>
+                    <a href="#about"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">About</a>
+                    <a href="#features"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Features</a>
+                    <a href="#gallery"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Gallery</a>
+                    <a href="#testimonials"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Reviews</a>
+                    <a href="#contact"
+                        class="py-2 text-gray-700 hover:text-green-600 transition-colors font-medium">Contact</a>
+                    <div class="flex items-center space-x-2 text-gray-600 pt-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="text-sm">+91 9839344008</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home"
+        class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="text-center px-4 max-w-5xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-playfair animate-fade-in-up">
+                Pure Vegetarian Delights
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-8 opacity-90 animate-fade-in-up max-w-4xl mx-auto leading-relaxed"
+                style="animation-delay: 0.2s;">
+                Experience the rich flavors of authentic vegetarian cuisine, crafted with passion and tradition in the
+                heart of Gorakhpur
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up"
+                style="animation-delay: 0.4s;">
+                <a href="#menu"
+                    class="btn-primary px-10 py-4 rounded-full text-white font-semibold text-lg inline-block shadow-2xl">
+                    Explore Our Menu
+                </a>
+                <a href="#contact"
+                    class="border-2 border-white px-10 py-4 rounded-full text-white font-semibold text-lg hover:bg-white hover:text-green-800 transition-all inline-block shadow-2xl">
+                    Book a Table
+                </a>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">100%</div>
+                    <div class="text-sm md:text-base opacity-90">Pure Vegetarian</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">50+</div>
+                    <div class="text-sm md:text-base opacity-90">Menu Items</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">5★</div>
+                    <div class="text-sm md:text-base opacity-90">Customer Rating</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">1000+</div>
+                    <div class="text-sm md:text-base opacity-90">Happy Customers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-playfair">Why Choose Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover what makes Loud and Cloud the premier destination for authentic vegetarian cuisine in
+                    Gorakhpur
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">100% Pure Vegetarian</h3>
+                    <p class="text-gray-600">Completely vegetarian kitchen with no compromise on purity and quality</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Fresh Daily</h3>
+                    <p class="text-gray-600">All ingredients sourced fresh daily from local farms and markets</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Traditional Recipes</h3>
+                    <p class="text-gray-600">Authentic recipes passed down through generations with modern presentation
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Quick Service</h3>
+                    <p class="text-gray-600">Fast and efficient service without compromising on food quality</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Family Friendly</h3>
+                    <p class="text-gray-600">Warm and welcoming atmosphere perfect for families and celebrations</p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Affordable Prices</h3>
+                    <p class="text-gray-600">Premium quality food at reasonable prices for everyone to enjoy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-playfair">Our Menu</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our carefully curated selection of authentic vegetarian dishes, made with the finest
+                    ingredients and traditional cooking methods
+                </p>
+            </div>
+
+            <!-- Menu Categories -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button
+                    class="menu-filter active bg-green-600 text-white px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-700 shadow-lg"
+                    data-filter="all">
+                    All Items
+                </button>
+                <button
+                    class="menu-filter bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-100 hover:text-green-700"
+                    data-filter="appetizers">
+                    Appetizers
+                </button>
+                <button
+                    class="menu-filter bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-100 hover:text-green-700"
+                    data-filter="mains">
+                    Main Course
+                </button>
+                <button
+                    class="menu-filter bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-100 hover:text-green-700"
+                    data-filter="breads">
+                    Breads & Rice
+                </button>
+                <button
+                    class="menu-filter bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-100 hover:text-green-700"
+                    data-filter="desserts">
+                    Desserts
+                </button>
+                <button
+                    class="menu-filter bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all hover:bg-green-100 hover:text-green-700"
+                    data-filter="beverages">
+                    Beverages
+                </button>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="menu-items">
+                <!-- Appetizers -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="appetizers">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Samosa" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Crispy Samosa</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Golden fried pastry filled with spiced potatoes and green
+                            peas, served with mint chutney</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹80</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="appetizers">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/5560756/pexels-photo-5560756.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Paneer Tikka" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Spicy
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Paneer Tikka</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Marinated cottage cheese cubes grilled to perfection with
+                            aromatic spices and bell peppers</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹220</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="appetizers">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Aloo Tikki" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Aloo Tikki Chat</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Crispy potato patties topped with yogurt, chutneys, and
+                            fresh vegetables</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹120</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Course -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="mains">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Dal Makhani" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Chef's Special
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dal Makhani</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Rich and creamy black lentils slow-cooked with butter and
+                            aromatic spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹280</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="mains">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Paneer Butter Masala" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Paneer Butter Masala</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Soft cottage cheese cubes in rich tomato and cashew gravy
+                            with aromatic spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹320</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="mains">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Chole Bhature" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Chole Bhature</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Spicy chickpea curry served with fluffy deep-fried bread
+                            and pickled onions</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹250</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breads & Rice -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="breads">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/5560754/pexels-photo-5560754.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Butter Naan" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Butter Naan</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Soft and fluffy Indian bread brushed with butter, baked
+                            fresh in tandoor</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹80</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="breads">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Jeera Rice" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Jeera Rice</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Fragrant basmati rice cooked with cumin seeds and aromatic
+                            spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹180</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="desserts">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Gulab Jamun" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Sweet
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Gulab Jamun</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Soft milk dumplings soaked in aromatic sugar syrup with
+                            cardamom and rose water</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹120</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="desserts">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Kulfi" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Kulfi</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Traditional Indian ice cream with cardamom, pistachios,
+                            and almonds</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="beverages">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Masala Chai" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Hot
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Masala Chai</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Traditional Indian spiced tea with cardamom, ginger, and
+                            aromatic spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹40</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    data-category="beverages">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                            alt="Fresh Lime Water" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Refreshing
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Fresh Lime Water</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Freshly squeezed lime with mint leaves and a hint of black
+                            salt</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-600">₹60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-50 to-green-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-slide-in-left">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 font-playfair">Our Story</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Loud and Cloud Pure Veg Restaurant has been serving authentic vegetarian cuisine to the people
+                        of Gorakhpur with passion and dedication since our inception. Our commitment to pure vegetarian
+                        food and traditional recipes has made us a beloved destination for food lovers across the
+                        region.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Every dish is prepared with love and attention to detail, using fresh ingredients sourced from
+                        local farms and authentic spices imported directly from their regions of origin. We believe in
+                        preserving the traditional cooking methods while presenting them with a modern touch.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">100% Pure Veg</h3>
+                                <p class="text-gray-600">Authentic vegetarian cuisine</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">Fresh Daily</h3>
+                                <p class="text-gray-600">Ingredients sourced fresh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-slide-in-right">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-6">
+                            <img src="https://images.pexels.com/photos/5560756/pexels-photo-5560756.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                                alt="Chef cooking" class="rounded-2xl shadow-xl">
+                            <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                                alt="Fresh vegetables" class="rounded-2xl shadow-xl">
+                        </div>
+                        <div class="space-y-6 mt-12">
+                            <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                                alt="Restaurant interior" class="rounded-2xl shadow-xl">
+                            <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                                alt="Spices" class="rounded-2xl shadow-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-playfair">What Our Customers Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Don't just take our word for it - hear from our satisfied customers who keep coming back for more
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex space-x-1">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"The best vegetarian restaurant in Gorakhpur! The Dal Makhani
+                        is absolutely divine and the service is exceptional. Highly recommended!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-semibold">RS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Rajesh Sharma</h4>
+                            <p class="text-gray-500 text-sm">Local Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex space-x-1">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Amazing food quality and authentic taste! The Paneer Butter
+                        Masala reminds me of my grandmother's cooking. Will definitely visit again."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-semibold">PG</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Priya Gupta</h4>
+                            <p class="text-gray-500 text-sm">Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex space-x-1">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Perfect place for family dining. Clean, hygienic, and
+                        delicious food. The staff is very courteous and the ambiance is wonderful."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-semibold">AK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Amit Kumar</h4>
+                            <p class="text-gray-500 text-sm">Family Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-playfair">Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Take a visual journey through our restaurant and discover the artistry behind our dishes and the
+                    warmth of our ambiance
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Dal dish" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/5560756/pexels-photo-5560756.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/5560756/pexels-photo-5560756.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Paneer Tikka" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Restaurant ambiance" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Samosas" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/5560754/pexels-photo-5560754.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/5560754/pexels-photo-5560754.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Naan bread" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Desserts" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Fresh ingredients" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-lg"
+                    onclick="openModal('https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                    <img src="https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+                        alt="Kulfi dessert" class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-playfair">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ready to experience authentic vegetarian cuisine? Make a reservation or get in touch with us for any
+                    inquiries
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-8 font-playfair">Visit Us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-lg mb-2">Address</h4>
+                                <p class="text-gray-600 leading-relaxed">Dubey Complex, Buddh Vihar, A1, Deoria Bypass
+                                    Rd, near Mount Litera Zee School, Commercial Yojna, Taramandal, Gorakhpur, Uttar
+                                    Pradesh 273010</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-lg mb-2">Phone</h4>
+                                <p class="text-gray-600">+91 9839344008</p>
+                                <p class="text-sm text-gray-500 mt-1">Available for reservations and inquiries</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-lg mb-2">Hours</h4>
+                                <div class="text-gray-600 space-y-1">
+                                    <p>Monday - Thursday: 11:00 AM - 10:00 PM</p>
+                                    <p>Friday - Saturday: 11:00 AM - 11:00 PM</p>
+                                    <p>Sunday: 12:00 PM - 9:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 text-lg mb-2">Email</h4>
+                                <p class="text-gray-600">info@fromloudandcloud.com</p>
+                                <p class="text-sm text-gray-500 mt-1">For catering and special events</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-8 font-playfair">Make a Reservation</h3>
+                    <form id="reservation-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name
+                                    *</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number
+                                    *</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label for="guests" class="block text-sm font-medium text-gray-700 mb-2">Number of
+                                    Guests *</label>
+                                <select id="guests" name="guests" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                                    <option value="">Select guests</option>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7 Guests</option>
+                                    <option value="8">8 Guests</option>
+                                    <option value="9">9 Guests</option>
+                                    <option value="10">10+ Guests</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-700 mb-2">Preferred Date
+                                    *</label>
+                                <input type="date" id="date" name="date" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-sm font-medium text-gray-700 mb-2">Preferred Time
+                                    *</label>
+                                <select id="time" name="time" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                                    <option value="">Select time</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="11:30 AM">11:30 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="12:30 PM">12:30 PM</option>
+                                    <option value="1:00 PM">1:00 PM</option>
+                                    <option value="1:30 PM">1:30 PM</option>
+                                    <option value="2:00 PM">2:00 PM</option>
+                                    <option value="6:00 PM">6:00 PM</option>
+                                    <option value="6:30 PM">6:30 PM</option>
+                                    <option value="7:00 PM">7:00 PM</option>
+                                    <option value="7:30 PM">7:30 PM</option>
+                                    <option value="8:00 PM">8:00 PM</option>
+                                    <option value="8:30 PM">8:30 PM</option>
+                                    <option value="9:00 PM">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Special
+                                Requests</label>
+                            <textarea id="message" name="message" rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                placeholder="Any special requests, dietary restrictions, or celebration details?"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full btn-primary text-white py-4 px-6 rounded-lg font-semibold text-lg shadow-lg">
+                            <span class="button-text">Make Reservation</span>
+                            <div class="loading-spinner hidden"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-xl font-playfair">F</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold font-playfair">Loud and Cloud</span>
+                            <p class="text-xs text-gray-400">Pure Vegetarian Restaurant</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Serving authentic pure vegetarian cuisine with passion and tradition in the heart of Gorakhpur
+                        since our inception.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#"
+                            class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                            <span class="text-sm font-bold">f</span>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                            <span class="text-sm font-bold">i</span>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+                            <span class="text-sm font-bold">t</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition-colors">Menu</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
+                        </li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Reviews</a>
+                        </li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 mt-0.5 text-green-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            </svg>
+                            <span>Dubey Complex, Buddh Vihar, A1, Deoria Bypass Rd, Gorakhpur, UP 273010</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+91 9839344008</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@fromloudandcloud.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Opening Hours</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>Mon - Thu:</span>
+                            <span>11AM - 10PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Fri - Sat:</span>
+                            <span>11AM - 11PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday:</span>
+                            <span>12PM - 9PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Loud and Cloud Pure Veg Restaurant. All rights reserved. | Designed with ❤️ for authentic
+                    vegetarian cuisine lovers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart">
+        <button id="floating-cart-btn"
+            class="bg-green-600 text-white p-4 rounded-full shadow-2xl hover:bg-green-700 transition-all relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+            </svg>
+            <span id="floating-cart-count" class="cart-badge hidden">0</span>
+        </button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[80vh] overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-2xl font-bold text-gray-800">Your Order</h3>
+                    <button onclick="closeCartModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+            </div>
+            <div id="cart-items" class="p-6 max-h-96 overflow-y-auto">
+                <p class="text-gray-500 text-center py-8">Your cart is empty</p>
+            </div>
+            <div class="p-6 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Total:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-green-600">₹0</span>
+                </div>
+                <button id="checkout-btn"
+                    class="w-full btn-primary text-white py-3 px-6 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content relative">
+            <img id="modal-image" src="" alt="Gallery image" class="max-w-full max-h-full rounded-2xl shadow-2xl">
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center">×</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg">
+        <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span id="notification-text">Item added to cart!</span>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let cart = [];
+        let cartTotal = 0;
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                header.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+
+        // Menu filtering
+        const menuFilters = document.querySelectorAll('.menu-filter');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        menuFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                menuFilters.forEach(f => {
+                    f.classList.remove('active', 'bg-green-600', 'text-white');
+                    f.classList.add('bg-gray-100', 'text-gray-700');
+                });
+
+                // Add active class to clicked filter
+                filter.classList.add('active', 'bg-green-600', 'text-white');
+                filter.classList.remove('bg-gray-100', 'text-gray-700');
+
+                const filterValue = filter.getAttribute('data-filter');
+
+                menuItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Gallery modal functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('gallery-modal');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('active');
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('gallery-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('cart-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeCartModal();
+            }
+        });
+
+        // Reservation form handling
+        document.getElementById('reservation-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const buttonText = submitButton.querySelector('.button-text');
+            const spinner = submitButton.querySelector('.loading-spinner');
+
+            // Show loading state
+            buttonText.textContent = 'Processing...';
+            spinner.classList.remove('hidden');
+            submitButton.disabled = true;
+
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+
+            // Simple validation
+            if (!data.name || !data.email || !data.phone || !data.date || !data.time || !data.guests) {
+                showNotification('Please fill in all required fields.');
+                resetSubmitButton();
+                return;
+            }
+
+            // Validate phone number (basic Indian mobile number validation)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(data.phone.replace(/\D/g, '').slice(-10))) {
+                showNotification('Please enter a valid 10-digit mobile number.');
+                resetSubmitButton();
+                return;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Please enter a valid email address.');
+                resetSubmitButton();
+                return;
+            }
+
+            // Validate date (should be today or future)
+            const selectedDate = new Date(data.date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                showNotification('Please select today\'s date or a future date.');
+                resetSubmitButton();
+                return;
+            }
+
+            // Simulate form submission delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Success message
+            showNotification(`Thank you, ${data.name}! Your reservation for ${data.guests} guests on ${data.date} at ${data.time} has been received. We'll contact you at ${data.phone} to confirm.`);
+
+            // Reset form
+            e.target.reset();
+            resetSubmitButton();
+
+            function resetSubmitButton() {
+                buttonText.textContent = 'Make Reservation';
+                spinner.classList.add('hidden');
+                submitButton.disabled = false;
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.menu-item, .gallery-item, .feature-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Set minimum date to today for reservation form
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').min = today;
+
+        // Newsletter subscription
+        document.querySelector('footer button').addEventListener('click', (e) => {
+            e.preventDefault();
+            const emailInput = e.target.previousElementSibling;
+            const email = emailInput.value.trim();
+
+            if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showNotification('Thank you for subscribing to our newsletter!');
+                emailInput.value = '';
+            } else {
+                showNotification('Please enter a valid email address.');
+            }
+        });
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeCartModal();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+
+            // Add loading animation to images
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('load', () => {
+                    img.classList.add('animate-fade-in-up');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
